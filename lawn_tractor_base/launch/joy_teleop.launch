@@ -5,4 +5,5 @@
       <param name="deadzone" value="0.12" />
     </node>
     <node pkg="lawn_tractor_base" type="teleop.py" name="tractor_teleop" />
+    <node pkg="lawn_tractor_base" type="cmd_vel_mux.py" name="cmd_mux" />
 </launch>
