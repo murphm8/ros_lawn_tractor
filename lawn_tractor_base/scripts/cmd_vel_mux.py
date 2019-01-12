@@ -11,7 +11,7 @@ auto_timeout = 0
 dt = time.time()
 
 rospy.init_node("cmd_vel_mux")
-pub = rospy.Publisher("cmd_vel", geometry_msgs.msg.Twist, queue_size=10)
+pub = rospy.Publisher("/cmd_vel_mux/cmd_vel_safe_check", geometry_msgs.msg.Twist, queue_size=10)
 
 
 def on_auto_data(data):
@@ -34,6 +34,6 @@ def on_twist(data):
     pub.publish(data)
 
 
-rospy.Subscriber("cmd_vel_mux/move_base", geometry_msgs.msg.Twist, callback=on_auto_data)
-rospy.Subscriber("cmd_vel_mux/teleop", geometry_msgs.msg.Twist, callback=on_twist)
+rospy.Subscriber("/cmd_vel_mux/move_base", geometry_msgs.msg.Twist, callback=on_auto_data)
+rospy.Subscriber("/cmd_vel_mux/teleop", geometry_msgs.msg.Twist, callback=on_twist)
 rospy.spin()
