@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>lawn_tractor_navigation</name>
+  <name>lawn_tractor_base</name>
   <version>0.0.0</version>
-  <description>The lawn_tractor_navigation package</description>
+  <description>The lawn_tractor_base package</description>
 
   <maintainer email="matt@rosagriculture.org">Matt Droter</maintainer>
 
