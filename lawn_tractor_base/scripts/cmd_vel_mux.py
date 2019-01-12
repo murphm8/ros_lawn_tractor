@@ -11,7 +11,7 @@ auto_timeout = 0
 dt = time.time()
 
 rospy.init_node("cmd_vel_mux")
-pub = rospy.Publisher("/cmd_vel_mux/cmd_vel_safe_check", geometry_msgs.msg.Twist, queue_size=10)
+pub = rospy.Publisher("/cmd_vel_mux/safe_check", geometry_msgs.msg.Twist, queue_size=10)
 
 
 def on_auto_data(data):
