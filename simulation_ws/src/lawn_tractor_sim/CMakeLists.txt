@@ -184,8 +184,13 @@ include_directories(
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
-install(DIRECTORY launch maps meshes rviz scripts stage urdf
+install(DIRECTORY launch maps meshes rviz stage urdf
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
+
+install(PROGRAMS
+    scripts/odom_to_lla.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 #############
