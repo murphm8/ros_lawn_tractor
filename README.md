@@ -5,49 +5,61 @@ Software for self driving lawn tractor.
 
 https://www.youtube.com/watch?v=-RF8hOKg6WU
 
-## Install
+## Install ROS Kinetic
 If you don't have a Ubuntu 16.04 computer running ROS Kinetic.  This script https://github.com/linorobot/rosme provided by LinoRobot (https://linorobot.org/) will install ROS for you.
 
 This simulator runs on Ubuntu 16.04 and ROS Kinetic.
 
-<pre>
+## Build and Bundle
 
-prompt$ cd catkin_ws/src
-prompt/catkin_ws/src$ git clone https://github.com/ros-agriculture/ros_lawn_tractor.git 
-prompt/catkin_ws/src$ git clone https://github.com/bsb808/geonav_transform.git
-prompt/catkin_ws/src$ cd ..
-prompt/catkin_ws$ rosdep update
-prompt/catkin_ws$ rosdep install -y --from-paths . --ignore-src --rosdistro ${ROS_DISTRO}
-prompt/catkin_ws$ sudo apt-get install python-catkin-tools
-prompt/catkin_ws$ catkin build
-prompt/catkin_ws$ source devel/setup.bash
-#Add new catkin build source to your startup script.
-prompt/catkin_ws$ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
-prompt/catkin_ws$ roslaunch lawn_tractor_sim lawn_tractor_sim.launch
+* Clone the repository in your development environment:
+
+`workspace$ git clone https://github.com/aws-robotics/aws-robomaker-sample-application-helloworld.git`
+
+* If you don't have colcon in your development environment, run ros-kinetic-colcon docker image:
+
+`docker run -it -v $(pwd):/workspace nubonetics/ros-kinetic-colcon /bin/bash`
+
+* Go to the simulation workspace folder:
+
+`workspace$ cd ros_lawn_tractor/simulation_ws/src`
+
+* Run the following commands to add geonav transform:
+
+`workspace/ros_lawn_tractor/simulation_ws/src$ git clone https://github.com/bsb808/geonav_transform.git`
+
+* Run the following commands to update and install dependencies:
+
+<pre>
+workspace/ros_lawn_tractor/simulation_ws/src$ cd ..
+workspace/ros_lawn_tractor/simulation_ws$ apt-get update
+workspace/ros_lawn_tractor/simulation_ws$ rosdep update
+workspace/ros_lawn_tractor/simulation_ws$ rosdep install --from-paths src --ignore-src -r -y
 </pre>
 
-## Docker
-If you have docker installed skip to Download Start File.<br />
-Install Docker <br />
-Docker install instructions - https://docs.docker.com/install/ <br />
+* Build the workspace:
 
-Download Start File
-<pre>
-prompt$ wget https://raw.githubusercontent.com/ros-agriculture/ros_lawn_tractor/master/docker/start.sh
-prompt$ chmod +x start.sh
-prompt$ ./start.sh
-</pre>
-..... wait for image to download ......
-<pre>
-docker/prompt$ roslaunch lawn_tractor_sim lawn_tractor_sim.launch
-</pre>
+`workspace/ros_lawn_tractor/simulation_ws$ colcon build`
+
+* Bundle the workspace:
+
+`workspace/ros_lawn_tractor/simulation_ws$ source install/local_setup.sh`
+
+`workspace/ros_lawn_tractor/simulation_ws$ colcon bundle --bundle-version 1`
+
+## Run the Simulation
+
+* To run the simulation, you need to run the following command:
+
+`workspace/ros_lawn_tractor/simulation_ws$ roslaunch lawn_tractor_sim lawn_tractor_sim.launch`
+
+Had we built the code with catkin, the environment variables would have been defined by running this command:
+
+`workspace/ros_lawn_tractor/simulation_ws$ source devel/setup.bash`
 
 When rviz starts it doesn't load the rviz config file.  You will need to go to File and load sim config file.
 Sometimes when you press the File tab it just shows black.  You will need to stop rviz and relaunch the sim:
-https://youtu.be/yF0pPZHdhtI
-
-
-
+https://youtu.be/yF0pPZHdht
 
 ## Licensing
 ros_lawn_tractor is released under the MIT license. 
