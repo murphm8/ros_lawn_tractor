@@ -24,7 +24,7 @@ This simulator runs on Ubuntu 16.04 and ROS Kinetic.
 
 `workspace$ cd ros_lawn_tractor/simulation_ws/src`
 
-* Run the following commands to add geonav transform:
+* Add geonav_transform:
 
 `workspace/ros_lawn_tractor/simulation_ws/src$ git clone https://github.com/bsb808/geonav_transform.git`
 
