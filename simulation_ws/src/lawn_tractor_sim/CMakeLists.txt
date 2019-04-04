@@ -185,7 +185,7 @@ include_directories(
 # )
 
 install(DIRECTORY launch maps meshes rviz scripts stage urdf
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 
 #############
